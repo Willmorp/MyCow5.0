@@ -1,4 +1,4 @@
-package pe.com.mycow;
+package pe.com.mycow.models;
 
 public class BaseEntity {
 }
