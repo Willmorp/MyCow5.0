@@ -2,16 +2,20 @@ package pe.com.mycow.models;
 
 public class Workplace {
     private int id;
-    private String location;
+    private String department;
+    private String province;
+    private String district;
     private String address;
     private User user;
 
     public Workplace() {
     }
 
-    public Workplace(int id, String location, String address, User user) {
+    public Workplace(int id, String department, String province, String district, String address, User user) {
         this.id = id;
-        this.location = location;
+        this.department = department;
+        this.province = province;
+        this.district = district;
         this.address = address;
         this.user = user;
     }
@@ -26,13 +30,31 @@ public class Workplace {
         return this;
     }
 
-    public String getLocation() {
+    public String getDepartment() {
 
-        return location;
+        return department;
     }
 
-    public Workplace setLocation(String location) {
-        this.location = location;
+    public Workplace setDepartment(String department) {
+        this.department = department;
+        return this;
+    }
+    
+    public String getProvince(){
+        return province;
+    }
+
+    public Workplace setProvince(String province){
+        this.province = province;
+        return this;
+    }
+    
+       public String getDistrict(){
+        return district;
+    }
+
+    public Workplace setDistrict(String district){
+        this.district = district;
         return this;
     }
 
