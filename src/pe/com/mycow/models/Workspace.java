@@ -3,7 +3,6 @@ public class Workspace {
     private int id;
     private int price;
     private int capacity;
-    private String address;
     private String description;
     private String fhoto;
     private Workplace workplace;
@@ -13,11 +12,10 @@ public class Workspace {
     public Workspace(){
     }
     
-    public Workspace(int id, int price, int capacity, String address, String description, String fhoto, Workplace workplace, User user, SpaceType spacetype) {
+    public Workspace(int id, int price, int capacity, String description, String fhoto, Workplace workplace, User user, SpaceType spacetype) {
         this.id = id;
         this.price = price;
         this.capacity = capacity;
-        this.address = address;
         this.description = description;
         this.fhoto = fhoto;
         this.workplace = workplace;
@@ -48,15 +46,6 @@ public class Workspace {
 
     public Workspace setCapacity(int capacity) {
         this.capacity = capacity;
-        return this;
-    }
-    
-    public String getAddress() {
-        return address;
-    }
-
-    public Workspace setAddress(String address) {
-        this.address = address;
         return this;
     }
     
