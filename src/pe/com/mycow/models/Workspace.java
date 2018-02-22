@@ -100,7 +100,7 @@ public class Workspace {
         return spacetype;
     }
     
-    public Workspace setSpaceType(Spacetype spacetype){
+    public Workspace setSpaceType(SpaceType spacetype){
         this.spacetype = spacetype;
         return this;
     }
