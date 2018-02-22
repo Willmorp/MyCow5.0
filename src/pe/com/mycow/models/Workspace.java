@@ -8,12 +8,12 @@ public class Workspace {
     private String fhoto;
     private Workplace workplace;
     private User user;
-    private Spacetype spacetype;
+    private SpaceType spacetype;
     
-    public workspace(){
+    public Workspace(){
     }
     
-    public Workspace(int id, int price, int capacity, String address, String description, String fhoto, Workplace workplace, User user, Spacetype spacetype) {
+    public Workspace(int id, int price, int capacity, String address, String description, String fhoto, Workplace workplace, User user, SpaceType spacetype) {
         this.id = id;
         this.price = price;
         this.capacity = capacity;
@@ -30,7 +30,7 @@ public class Workspace {
     
     public Workspace setId(int id){
         this.id = id;
-        return this,
+        return this;
     }
     
      public int getPrice() {
@@ -96,12 +96,13 @@ public class Workspace {
         return this;
     }
     
-    public Spacetype getSpacetype(){
+    public SpaceType getSpacetype(){
         return spacetype;
     }
     
-    public Workspace setSpacetype(Spacetype spacetype){
+    public Workspace setSpaceType(Spacetype spacetype){
         this.spacetype = spacetype;
         return this;
     }
+}
     
