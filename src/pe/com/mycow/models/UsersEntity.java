@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsersEntity extends BaseEntity{
-  
-  private static String DEFAULT_SQL = "SELECT * FROM mycow.users";
+
+    private static String DEFAULT_SQL = "SELECT * FROM mycow.users";
 
     private List<User> findByCriteria(String sql) {
         List<User> users;
 
         if (getConnection() != null) {
             users = new ArrayList<>();
-          
-          try {
+
+            try {
                 ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
                 while (resultSet.next()) {
                     User user = new User().setId(resultSet.getInt("id"))
@@ -24,7 +24,7 @@ public class UsersEntity extends BaseEntity{
                             .setLastName(resultSet.getString("last_name"))
                             .setAge(resultSet.getInt("age"))
                             ;
-                    users.add(user);                  
+                    users.add(user);
                 }
                 return users;
 
@@ -40,8 +40,8 @@ public class UsersEntity extends BaseEntity{
     public List<User> findAll() {
         return findByCriteria(DEFAULT_SQL);
     }
-  
-      public User findById(int id){
+
+    public User findById(int id){
         List<User> users = findByCriteria(DEFAULT_SQL+"WHERE id = "+String.valueOf(id));
         return(users != null ? users.get(0) : null);
     }
@@ -55,7 +55,7 @@ public class UsersEntity extends BaseEntity{
         List<User> users = findByCriteria(DEFAULT_SQL+"WHERE first_name = '"+name + "'");
         return(users != null ? users.get(0) : null);
     }*/
-  
+
     private  int updatebycriteria(String sql){
         if(getConnection() != null){
             try {
@@ -116,8 +116,8 @@ public class UsersEntity extends BaseEntity{
         }
         return null;
     }
-  
-  public boolean delete(int id){
+
+    public boolean delete(int id){
 
         return updatebycriteria("DELETE FROM users WHERE user_id =" + String.valueOf(id)) > 0;
     }
@@ -135,5 +135,6 @@ public class UsersEntity extends BaseEntity{
                 String.valueOf(user.getId())) > 0;
 
     }
-                     
+
 }
+
