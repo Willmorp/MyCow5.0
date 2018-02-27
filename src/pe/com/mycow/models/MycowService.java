@@ -95,7 +95,6 @@ public class MycowService {
 
 
 
-
     public User findUserById(int id) {
         return getUsersEntity() != null ?
                 getUsersEntity().findById(id) : null;
@@ -121,5 +120,18 @@ public class MycowService {
                 getUsersEntity().update(region) : false;
     }
 
+public ReserveSpace createReserveSpace(String reservationDate) {
+        return getReserveSpacesEntity() != null ?
+                getReserveSpacesEntity().create(reservationDate) : null;
+    }
 
+    public boolean updateReserveSpace(ReserveSpace reserveSpace) {
+        return getReserveSpacesEntity() != null ?
+                getReserveSpacesEntity().update(reserveSpace) : false;
+    }
+
+    public boolean deleteReserveSpace(int id) {
+        return getReserveSpacesEntity() != null ?
+                getReserveSpacesEntity() .delete(id) : false;
+    }
 }
