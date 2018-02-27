@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReserveSpacesEntity extends BaseEntity{
-    private static String DEFAULT_SQL = "SELECT * FROM hr.reservespaces";
+    private static String DEFAULT_SQL = "SELECT * FROM MyCow.reserve_spaces";
     private List<ReserveSpace> findByCriteria(String sql) {
         List<ReserveSpace> reserveSpaces;
         if(getConnection() != null) {
@@ -16,12 +16,12 @@ public class ReserveSpacesEntity extends BaseEntity{
                         .createStatement()
                         .executeQuery(sql);
                 while (resultSet.next()) {
-                    ReserveSpace reservespace = new ReserveSpace()
-                            .setId(resultSet.getInt("reservespace_id"))
-                            .setReservationDate(resultSet.getString("reserverspace_reservationdate"))
-                            .setNumHours(resultSet.getInt("reservespace_numhours"))
-                            .setNumDays(resultSet.getInt("reservespace_numdays"));
-                    reserveSpaces.add(reservespace);
+                    ReserveSpace reserveSpace = new ReserveSpace()
+                            .setId(resultSet.getInt("id"))
+                            .setReservationDate(resultSet.getString("reservation_date"))
+                            .setNumHours(resultSet.getInt("num_hours"))
+                            .setNumDays(resultSet.getInt("num_days"));
+                    reserveSpaces.add(reserveSpace);
                 }
                 return reserveSpaces;
 
@@ -38,15 +38,28 @@ public class ReserveSpacesEntity extends BaseEntity{
 
     public ReserveSpace findById(int id) {
         List<ReserveSpace> reserveSpaces = findByCriteria(DEFAULT_SQL +
-                " WHERE reservespace_id = "+ String.valueOf(id));
+                " WHERE id = "+ String.valueOf(id));
         return (reserveSpaces != null ? reserveSpaces.get(0) : null);
     }
 
-    public ReserveSpace findByReservationDate(String date) {
+    public ReserveSpace findByReservationDate(String reservationSpace) {
         List<ReserveSpace> reserveSpaces = findByCriteria(DEFAULT_SQL +
-                " WHERE reservespace_reservationdate = '" + date + "'");
+                " WHERE reservation_date = '" + reservationSpace + "'");
         return (reserveSpaces != null ? reserveSpaces.get(0) : null);
     }
+
+    public ReserveSpace findByNumHours(int numHours) {
+        List<ReserveSpace> reserveSpaces = findByCriteria(DEFAULT_SQL +
+                " WHERE num_hours= " + String.valueOf(numHours));
+        return (reserveSpaces != null ? reserveSpaces.get(0) : null);
+    }
+
+    public ReserveSpace findByNumDays(int numDays) {
+        List<ReserveSpace> reserveSpaces = findByCriteria(DEFAULT_SQL +
+                " WHERE num_days = " + String.valueOf(numDays));
+        return (reserveSpaces != null ? reserveSpaces.get(0) : null);
+    }
+
 
 
     private int updateByCriteria(String sql) {
@@ -63,6 +76,50 @@ public class ReserveSpacesEntity extends BaseEntity{
     }
 
     public boolean delete(int id) {
-        return updateByCriteria("DELETE FROM reservespaces WHERE reservespace_id = " + String.valueOf(id)) > 0;
+        return updateByCriteria("DELETE FROM reserve_spaces WHERE id = " + String.valueOf(id)) > 0;
+    }
+
+    private int getMaxId() {
+        String sql = "SELECT MAX(id) AS max_id FROM reserve_spaces";
+        if(getConnection() != null) {
+            try {
+                ResultSet resultSet = getConnection()
+                        .createStatement()
+                        .executeQuery(sql);
+                return resultSet.next() ?
+                        resultSet.getInt("max_id") : 0;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return 0;
+    }
+
+
+    public ReserveSpace create(String reservationDate) {
+        if(findByReservationDate(reservationDate) == null) {
+            if(getConnection() != null) {
+                String sql = "INSERT INTO reserve_spaces(id, reservation_date) VALUES(" +
+                        String.valueOf(getMaxId() + 1) + ", '" +
+                        reservationDate + "')";
+                int results = updateByCriteria(sql);
+                if(results > 0) {
+                    ReserveSpace reserveSpace = new ReserveSpace(getMaxId(), reservationDate);
+
+                    return reserveSpace;
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean update(ReserveSpace reserveSpace) {
+        if(findByReservationDate(reserveSpace.getReservationDate()) != null) return false;
+        return updateByCriteria(
+                "UPDATE reserve_spaces SET reservation_date = '" +
+                        reserveSpace.getReservationDate() + "'" +
+                        " WHERE id = " +
+                        String.valueOf(reserveSpace.getId())) > 0;
     }
 }
