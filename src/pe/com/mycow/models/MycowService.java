@@ -13,6 +13,7 @@ public class MycowService {
     private UsersEntity usersEntity;
     private WorkplacesEntity workplacesEntity ;
     private WorkspacesEntity workspacesEntity;
+    private TypesEntity typesEntity;
     private ReserveSpacesEntity reservespacesEntity;
 
     private Connection getConnection() {
@@ -70,6 +71,18 @@ public class MycowService {
         }
         return reservespacesEntity;
     }
+    protected TypesEntity getTypesEntity() {
+        if(getConnection() != null) {
+            if(typesEntity == null) {
+                typesEntity = new TypesEntity();
+                typesEntity.setConnection(getConnection());
+            }
+        }
+        return typesEntity;
+    }
+
+
+
 
     //********************
     //       FindAll
@@ -84,17 +97,18 @@ public class MycowService {
                 getWorkplacesEntity().findAll() : null;
     }
 
-    public List<Workspace> findAllWorkSpaces() {
+    public List<Workspace> findAllWorkspaces() {
         return getWorkSpacesEntity() != null ?
-                getWorkSpacesEntity().findAll() : null;
+                getWorkSpacesEntity().findAll(getUsersEntity(),getTypesEntity(),getWorkplacesEntity()) : null;
     }
     public List<ReserveSpace> findAllReserveSpaces(){
         return getReserveSpacesEntity() != null ?
-                getReserveSpacesEntity().findAll() : null;
+                getReserveSpacesEntity().findAll(getUsersEntity(),getTypesEntity(),getWorkSpacesEntity(),getWorkplacesEntity()) : null;
     }
-
-
-
+    public List<Types> findAllTypes() {
+        return getTypesEntity() != null ?
+                getTypesEntity().findAll() : null;
+    }
     public User findUserById(int id) {
         return getUsersEntity() != null ?
                 getUsersEntity().findById(id) : null;
@@ -105,10 +119,28 @@ public class MycowService {
                 getUsersEntity().findByName(name) : null;
     }
 
+
+    //*********** CREATEE**********
+
+
     public User createUser(String name) {
         return getUsersEntity() != null ?
                 getUsersEntity().create(name) : null;
     }
+//    public Workspace createWorkSpace(int price,int capacity, String photo, String status,String description, User user, Types type, Workplace workplace) {
+//        return getWorkSpacesEntity() != null ?
+//                getWorkSpacesEntity().create(price, capacity, photo,  status, description, user, type, workplace) : null;
+//    }
+    public Workspace createWorkSpace(int price,int capacity, String photo, String status,String description) {
+        return getWorkSpacesEntity() != null ?
+                getWorkSpacesEntity().create(price, capacity , photo , status, description ) : null;
+    }
+
+
+
+
+
+
 
     public boolean deleteUser(int id) {
         return getUsersEntity() != null ?
@@ -120,18 +152,6 @@ public class MycowService {
                 getUsersEntity().update(region) : false;
     }
 
-public ReserveSpace createReserveSpace(String reservationDate) {
-        return getReserveSpacesEntity() != null ?
-                getReserveSpacesEntity().create(reservationDate) : null;
-    }
 
-    public boolean updateReserveSpace(ReserveSpace reserveSpace) {
-        return getReserveSpacesEntity() != null ?
-                getReserveSpacesEntity().update(reserveSpace) : false;
-    }
 
-    public boolean deleteReserveSpace(int id) {
-        return getReserveSpacesEntity() != null ?
-                getReserveSpacesEntity() .delete(id) : false;
-    }
 }
