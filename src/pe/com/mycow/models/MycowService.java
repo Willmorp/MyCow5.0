@@ -137,11 +137,6 @@ public class MycowService {
     }
 
 
-
-
-
-
-
     public boolean deleteUser(int id) {
         return getUsersEntity() != null ?
                 getUsersEntity().delete(id) : false;
@@ -152,6 +147,19 @@ public class MycowService {
                 getUsersEntity().update(region) : false;
     }
 
+    public ReserveSpace createReserveSpace(String startDate, String endDate, String observation, User user , Workspace workspace,TypesEntity typesEntity, WorkplacesEntity workplacesEntity) {
+        return getReserveSpacesEntity() != null ?
+                getReserveSpacesEntity().create(startDate, endDate, observation, user, workspace,typesEntity, workplacesEntity) : null;
+    }
 
+    public boolean updateReserveSpace(ReserveSpace reserveSpace, UsersEntity usersEntity,WorkspacesEntity workspacesEntity,TypesEntity typesEntity,WorkplacesEntity workplacesEntity) {
+        return getReserveSpacesEntity() != null ?
+                getReserveSpacesEntity().update(reserveSpace,usersEntity,workspacesEntity,typesEntity,workplacesEntity) : false;
+    }
+
+    public boolean deleteReserveSpace(int id) {
+        return getReserveSpacesEntity() != null ?
+                getReserveSpacesEntity() .delete(id) : false;
+    }
 
 }
