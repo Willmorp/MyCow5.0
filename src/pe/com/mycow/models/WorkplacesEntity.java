@@ -18,7 +18,12 @@ public class WorkplacesEntity extends BaseEntity {
                         .executeQuery(sql);
                 while (resultSet.next()) {
                     Workplace workplace = new Workplace()
-                            .setId(resultSet.getInt("reserveplace_id"));
+                            .setId(resultSet.getInt("id"))
+                            .setDepartment(resultSet.getString("depatment"))
+                            .setProvince(resultSet.getString("province"))
+                            .setDistrict(resultSet.getString("district"))
+                            .setAddress(resultSet.getString("address"))
+                            ;
                     workplaces.add(workplace);
                 }
                 return workplaces;
@@ -36,5 +41,12 @@ public class WorkplacesEntity extends BaseEntity {
     public List<Workplace> findAll() {
         return findByCriteria(DEFAULT_SQL);
     }
+
+    public Workplace findById(int id ){
+        List<Workplace> workplaces = findByCriteria(DEFAULT_SQL+" WHERE id = "+String.valueOf(id));
+        return(workplaces != null ? workplaces.get(0) : null);
+    }
+
+
 
 }
