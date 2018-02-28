@@ -1,45 +1,59 @@
 package pe.com.mycow.models;
+
 public class Workspace {
     private int id;
     private int price;
     private int capacity;
+    private String photo;
+    private String status;
     private String description;
-    private String fhoto;
-    private Workplace workplace;
     private User user;
-    private SpaceType spacetype;
-    
-    public Workspace(){
+    private Types types;
+    private Workplace workplace;
+
+    public Workspace() {
     }
-    
-    public Workspace(int id, int price, int capacity, String description, String fhoto, Workplace workplace, User user, SpaceType spacetype) {
+
+    public Workspace(int id, int price, int capacity, String photo, String status, String description, User user, Types types, Workplace workplace) {
         this.id = id;
         this.price = price;
         this.capacity = capacity;
+        this.photo = photo;
+        this.status = status;
         this.description = description;
-        this.fhoto = fhoto;
-        this.workplace = workplace;
         this.user = user;
+        this.types = types;
+        this.workplace = workplace;
     }
-    
-    public int getId(){
+
+    public Workspace(int id, int price, int capacity, String photo, String status, String description) {
+        this.id = id;
+        this.price = price;
+        this.capacity = capacity;
+        this.photo = photo;
+        this.status = status;
+        this.description = description;
+    }
+
+
+    public int getId() {
         return id;
     }
-    
-    public Workspace setId(int id){
+
+    public Workspace setId(int id) {
         this.id = id;
         return this;
     }
-    
-     public int getPrice() {
+
+    public int getPrice() {
         return price;
     }
-    
+
     public Workspace setPrice(int price) {
         this.price = price;
         return this;
     }
-    
+
     public int getCapacity() {
         return capacity;
     }
@@ -48,7 +62,7 @@ public class Workspace {
         this.capacity = capacity;
         return this;
     }
-    
+
     public String getDescription() {
         return description;
     }
@@ -57,26 +71,26 @@ public class Workspace {
         this.description = description;
         return this;
     }
-    
-    public String getFhoto(){
-        return fhoto;
-    }
-    
-    public Workspace setFhoto(String fhoto){
-        this.fhoto = fhoto;
-        return this;
-    }
-    
-    public Workplace getWorkplace(){ 
-        return workplace;
+
+    public String getPhoto() {
+        return photo;
     }
 
-    public Workspace setWorkplace(Workplace workplace) {
-        this.workplace = workplace;
+    public Workspace setPhoto(String photo) {
+        this.photo = photo;
         return this;
     }
-    
-    public User getUser(){ 
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Workspace setStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public User getUser() {
         return user;
     }
 
@@ -84,14 +98,22 @@ public class Workspace {
         this.user = user;
         return this;
     }
-    
-    public SpaceType getSpacetype(){
-        return spacetype;
+
+    public Types getTypes() {
+        return types;
     }
-    
-    public Workspace setSpaceType(SpaceType spacetype){
-        this.spacetype = spacetype;
+
+    public Workspace setTypes(Types types) {
+        this.types = types;
+        return this;
+    }
+
+    public Workplace getWorkplace() {
+        return workplace;
+    }
+
+    public Workspace setWorkplace(Workplace workplace) {
+        this.workplace = workplace;
         return this;
     }
 }
-    
