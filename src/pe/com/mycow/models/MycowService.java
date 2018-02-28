@@ -118,6 +118,16 @@ public class MycowService {
         return getUsersEntity() != null ?
                 getUsersEntity().findByName(name) : null;
     }
+    
+    public User findUserByEmail(String email) {
+        return getUsersEntity() != null ?
+                getUsersEntity().findByEmail(email) : null;
+    }
+
+    public User findUserByPassword(String password) {
+        return getUsersEntity() != null ?
+                getUsersEntity().findByPassword(password) : null;
+    }
 
 
     //*********** CREATEE**********
