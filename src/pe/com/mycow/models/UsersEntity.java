@@ -5,9 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersEntity extends BaseEntity{
+public class UsersEntity extends BaseEntity {
 
-    private static String DEFAULT_SQL = "SELECT * FROM mycow.users";
+    private static String DEFAULT_SQL = " SELECT * FROM users ";
 
     private List<User> findByCriteria(String sql) {
         List<User> users;
@@ -18,18 +18,20 @@ public class UsersEntity extends BaseEntity{
             try {
                 ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
                 while (resultSet.next()) {
-                    User user = new User().setId(resultSet.getInt("id"))
+                    User user = new User()
+                            .setId(resultSet.getInt("id"))
                             .setDni(resultSet.getInt("dni"))
                             .setFirstName(resultSet.getString("first_name"))
                             .setLastName(resultSet.getString("last_name"))
                             .setAge(resultSet.getInt("age"))
-                            ;
+                            .setEmail(resultSet.getString("email"))
+                            .setRole(resultSet.getString("role"))
+                            .setPassword(resultSet.getString("password"));
                     users.add(user);
                 }
                 return users;
 
-            }
-            catch (SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
 
@@ -38,28 +40,35 @@ public class UsersEntity extends BaseEntity{
     }
 
     public List<User> findAll() {
+
         return findByCriteria(DEFAULT_SQL);
     }
 
-    public User findById(int id){
-        List<User> users = findByCriteria(DEFAULT_SQL+"WHERE id = "+String.valueOf(id));
-        return(users != null ? users.get(0) : null);
+    public User findById(int id) {
+        List<User> users = findByCriteria(DEFAULT_SQL + " WHERE id = " + String.valueOf(id));
+        return (users != null && !users.isEmpty() ? users.get(0) : null);
     }
 
-    public User findByName(String name){
-        List<User> users = findByCriteria(DEFAULT_SQL+"WHERE first_name = '"+name + "'");
-        return(users != null ? users.get(0) : null);
+    public User findByFirstName(String firstname) {
+        List<User> users = findByCriteria(DEFAULT_SQL + " WHERE first_name = '" + firstname + "'");
+        return (users != null && !users.isEmpty() ? users.get(0) : null);
     }
 
-   /* public User findAll(String name){
-        List<User> users = findByCriteria(DEFAULT_SQL+"WHERE first_name = '"+name + "'");
-        return(users != null ? users.get(0) : null);
-    }*/
+    public User findByEmail(String email) {
+        List<User> users = findByCriteria(DEFAULT_SQL + " WHERE email = '" + email + "'");
+        return (users != null && !users.isEmpty() ? users.get(0) : null);
+    }
 
-    private  int updatebycriteria(String sql){
-        if(getConnection() != null){
+    public User findByPassword(String password) {
+        List<User> users = findByCriteria(DEFAULT_SQL + " WHERE password = '" + password + "'");
+        return (users != null && !users.isEmpty() ? users.get(0) : null);
+    }
+
+
+    private int updatebycriteria(String sql) {
+        if (getConnection() != null) {
             try {
-                return  getConnection().createStatement().executeUpdate(sql);
+                return getConnection().createStatement().executeUpdate(sql);
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -67,26 +76,10 @@ public class UsersEntity extends BaseEntity{
         }
         return 0;
     }
-
-    /*private int getId(){
-        String sql = "SELECT(user_id) AS id FROM users ";
-
-        if(getConnection() != null){
-            ResultSet resultSet = null;
-            try {
-                resultSet = getConnection().createStatement().executeQuery(sql);
-                return resultSet.next() ? resultSet.getInt("id") : 0;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
-        return 0;
-    }*/
 
     private int getMaxId() {
         String sql = "SELECT MAX(id) AS max_id FROM users";
-        if(getConnection() != null) {
+        if (getConnection() != null) {
             try {
                 ResultSet resultSet = getConnection()
                         .createStatement()
@@ -101,40 +94,25 @@ public class UsersEntity extends BaseEntity{
         return 0;
     }
 
-    public  User create(String first_name){
-        if(findByName(first_name) == null){
-            if(getConnection() != null){
-                String sql = "INSERT INTO users(id , dni ,first_name , last_name , age , email, password  ) VALUES(" +
-                        String.valueOf(getMaxId() + 1) + ", 7815 ,'" +
-                        first_name + "', 'otronombre' , 22 , 'email', 987654 )";
-                int results = updatebycriteria(sql);
-                if(results > 0){
-                    User user = new User(getMaxId(), first_name );
-                    return user;
+    public User create(String firstName, String email,  String password) {
+        if (findByEmail(email) == null) {
+            if (findByFirstName(firstName) == null) {
+                if (getConnection() != null) {
+                    String sql = "INSERT INTO users(id , dni, first_name ,last_name, email, role , password  ) VALUES(" +
+                            String.valueOf(getMaxId() + 1) + ", '" +  "456897215"   +
+                            firstName + "', '" +  "Perez"   + email + "', " + "User"   + password + "')";
+                    int results = updatebycriteria(sql);
+                    if (results > 0) {
+                        User user = new User(getMaxId(), firstName, email , password);
+                        return user;
+                    }
                 }
             }
+            return null;
         }
-        return null;
-    }
 
-    public boolean delete(int id){
+            return null;
+        }
 
-        return updatebycriteria("DELETE FROM users WHERE user_id =" + String.valueOf(id)) > 0;
-    }
-
-    public boolean delete(String name){
-
-        return updatebycriteria("DELETE FROM users WHERE user_name = '" + name + "'") > 0;
-    }
-
-    public boolean update(User user){
-
-        return updatebycriteria("UPDATE users SET first_name = '" +
-                user.getFirstName() + "' " +
-                "WHERE id ="+
-                String.valueOf(user.getId())) > 0;
-
-    }
 
 }
-
