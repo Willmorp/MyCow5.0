@@ -1,20 +1,25 @@
 package pe.com.mycow.models;
 
-public class ReserveSpace {
+public class ReserveSpace  {
     private int id;
-    private String reservationDate;
-    private int numHours;
-    private int numDays;
-
-    public ReserveSpace(int id, String reservationDate, int numHours, int numDays) {
-        this.id = id;
-        this.reservationDate = reservationDate;
-        this.numHours = numHours;
-        this.numDays = numDays;
-    }
+    private String startDate;
+    private String endDate;
+    private String observation;
+    private User user;
+    private Workspace workspace;
 
     public ReserveSpace() {
     }
+
+    public ReserveSpace(int id, String startDate, String endDate, String observation, User user, Workspace workspace) {
+        this.id = id;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.observation = observation;
+        this.user = user;
+        this.workspace = workspace;
+    }
+
 
     public int getId() {
         return id;
@@ -25,30 +30,50 @@ public class ReserveSpace {
         return this;
     }
 
-    public String getReservationDate() {
-        return reservationDate;
+
+    public String getStartDate() {
+        return startDate;
     }
 
-    public ReserveSpace setReservationDate(String reservationDate) {
-        this.reservationDate = reservationDate;
+    public ReserveSpace setStartDate(String startDate) {
+        this.startDate = startDate;
         return this;
     }
 
-    public int getNumHours() {
-        return numHours;
+    public String getEndDate() {
+        return endDate;
     }
 
-    public ReserveSpace setNumHours(int numHours) {
-        this.numHours = numHours;
+    public ReserveSpace setEndDate(String endDate) {
+        this.endDate = endDate;
         return this;
     }
 
-    public int getNumDays() {
-        return numDays;
+    public String getObservation() {
+        return observation;
     }
 
-    public ReserveSpace setNumDays(int numDays) {
-        this.numDays = numDays;
+    public ReserveSpace setObservation(String observation) {
+        this.observation = observation;
+        return this;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public ReserveSpace setUser(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public Workspace getWorkspace() {
+        return workspace;
+    }
+
+    public ReserveSpace setWorkspace(Workspace workspace) {
+        this.workspace = workspace;
         return this;
     }
 }
+
