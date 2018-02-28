@@ -6,55 +6,26 @@ public class Workplace {
     private String province;
     private String district;
     private String address;
-    private User user;
 
-    public Workplace() {
-    }
 
-    public Workplace(int id, String department, String province, String district, String address, User user) {
+    public Workplace(int id, String department, String province, String district, String address) {
         this.id = id;
         this.department = department;
         this.province = province;
         this.district = district;
         this.address = address;
-        this.user = user;
     }
 
-    public int getId() {
+    public Workplace() {
+    }
 
+
+    public int getId() {
         return id;
     }
 
     public Workplace setId(int id) {
         this.id = id;
-        return this;
-    }
-
-    public String getDepartment() {
-
-        return department;
-    }
-
-    public Workplace setDepartment(String department) {
-        this.department = department;
-        return this;
-    }
-    
-    public String getProvince(){
-        return province;
-    }
-
-    public Workplace setProvince(String province){
-        this.province = province;
-        return this;
-    }
-    
-       public String getDistrict(){
-        return district;
-    }
-
-    public Workplace setDistrict(String district){
-        this.district = district;
         return this;
     }
 
@@ -67,13 +38,30 @@ public class Workplace {
         return this;
     }
 
-
-    public User getUser() {
-        return user;
+    public String getDepartment() {
+        return department;
     }
 
-    public Workplace setUser(User user) {
-        this.user = user;
+    public Workplace setDepartment(String department) {
+        this.department = department;
+        return this;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public Workplace setProvince(String province) {
+        this.province = province;
+        return this;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public Workplace setDistrict(String district) {
+        this.district = district;
         return this;
     }
 }
