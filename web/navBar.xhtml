@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            type="application/javascript"/>
+    <style type="text/css">
+        .header{
+            display: grid;
+        }
+        div#myHeader{
+            background-color: #f5f5f5;
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 0;
+        }
+    </style>
+</h:head>
+<h:body style="width: 100%">
+    <div id="myHeader">
+        <div  class=" navbar-inverse top">
+            <div class=" container-fluid">
+                <div class="navbar-brand">
+
+                    <a href="index.xhtml">
+                        <h:outputLabel value="MyCow" /></a>
+                </div>
+            </div>
+        </div>
+        <div id="myMenu">
+            <h:form >
+                <ul class="nav nav-pills nav-justified">
+                    <li><h:commandLink value="Space Types" action="spacesType"/></li>
+                    <li><h:commandLink value="Space List" action="listSpaces"/></li>
+                    <li><h:commandLink value="About Us" action="knowUs"/></li>
+                    <li><h:commandLink value="Services" action="servicesView"/></li>
+
+
+                </ul>
+            </h:form>
+        </div>
+
+    </div>
+</h:body>
+<f:view>
+
+</f:view>
+</html>
