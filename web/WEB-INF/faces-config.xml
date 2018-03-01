@@ -20,7 +20,7 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>success</from-outcome>
-            <to-view-id>/reservation.xhtml</to-view-id>
+            <to-view-id>/addSpace.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -48,12 +48,29 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/listReserve.xhtml</from-view-id>
+        <from-view-id>/addSpace.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{reserveSpacesBean.newReserveSpace}</from-action>
+            <from-action>#{workspacesBean.createWorkSpace}</from-action>
             <from-outcome>success</from-outcome>
-            <to-view-id>/reservation.xhtml</to-view-id>
+            <to-view-id>/listSpaces.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/listSpaces.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{workspacesBean.newWorkspace}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/addSpace.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/addSpace.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/listSpaces.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
 
 </faces-config>
