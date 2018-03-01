@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+>
+<h:head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            type="application/javascript"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+</h:head>
+<ui:include src="navBar.xhtml"/>
+<h:body style="background-color: lightgray">
+
+
+<f:view>
+
+
+    <h:form>
+        <b:container >
+            <b:panel >
+                <h:form  prependId="false" styleClass="form-horizontal">
+                    <h2 class="form-signin-heading">Agrega tu espacio</h2>
+
+                    <div class=" form-group "  >
+                        <h:outputLabel value="Price d" for="price"/>
+                        <h:inputText placeholder="Price" id="price" value="#{workspacesBean.price}"  styleClass="form-control "/>
+                    </div>
+
+                    <div class=" form-group " >
+                        <h:outputLabel value="capacity d" for="capacity"/>
+                        <h:inputText  placeholder="Capacity" id="capacity" value="#{workspacesBean.capacity}" styleClass="form-control "/>
+                    </div>
+
+                    <div class="form-group">
+                        <h:outputLabel value="status d" for="status"/>
+                        <h:inputText placeholder="Status" id="status" value="#{workspacesBean.status}"  styleClass="form-control "/>
+                    </div>
+
+                    <div class="form-group">
+                    <h:outputLabel value="Tipo de Reserva" />
+                    <select name="tipo_doc" class="form-control" style="width:80px;">
+                        <option value="4">Tipo</option>
+                        <option value="1">Espacio Compartido</option>
+                        <option value="2">Privado</option>
+                        <option value="3">y el otro</option>
+
+                    </select>
+                    </div>
+
+                    <div class="form-group">
+                        <h:outputLabel value="description d" for="description"/>
+                        <h:inputText placeholder="Description" id="description" value="#{workspacesBean.description}" styleClass="form-control "/>
+                    </div>
+
+                    <!--<b:selectBooleanCheckbox value="true" caption="remember me"/>-->
+
+                    <div class="col-sm-12" style="text-align: ">
+                        <h:commandButton style="width: 80%;margin: 30px;" class="btn btn-primary btn-lg" value="Create" action="#{workspacesBean.createWorkSpace}"/>
+                    </div>
+
+                    <!--<div class="col-md-3">-->
+                        <!--<b:commandButton look="primary btn-block" value="Login" icon="log-in" action="#"/>-->
+                    <!--</div>-->
+
+
+                    <!--<div class=" form-group">-->
+                        <!--<b:inputText placeholder="Email" value="" styleClass=" form-control ">-->
+                            <!--<f:facet name="prepend">-->
+                                <!--<b:icon name="envelope"/>-->
+                            <!--</f:facet>-->
+                        <!--</b:inputText>-->
+                    <!--</div>-->
+                    <!--<div class=" form-group ">-->
+                        <!--<b:inputText  placeholder="Password" type="password" value="" styleClass="form-control ">-->
+                            <!--<f:facet name="prepend">-->
+                                <!--<b:iconAwesome name="key"/>-->
+                            <!--</f:facet>-->
+                        <!--</b:inputText>-->
+                    <!--</div>-->
+
+
+                </h:form>
+            </b:panel>
+        </b:container>
+
+    </h:form>
+
+</f:view>
+</h:body>
+<div class="col-sm-11" style="background-color: #fafbfc ; width: 100% ; bottom: 0; margin: 0; padding: 0;">
+    <ui:include src="footer.xhtml"/>
+</div>
+</html>
