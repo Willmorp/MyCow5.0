@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+
+    <h:head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <!-- Optional theme -->
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                type="application/javascript"/>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <title>MyCow</title>
+
+    </h:head>
+<h:body style="background: url(resources/img/bg-body.jpg); background-repeat: no-repeat; background-size: cover;background-position: center;">
+    <ui:include src="navBar.xhtml" />
+    <div class="row">
+        <div class="col-md-6">
+            <img class="card-img-top" src='resources/img/logo.png' width="300px" height="180px" style="margin: 50px 40px;"/>
+        </div>
+        <div class="col-md-5" style="margin: 40px  50px;  padding: 40px ; background-color: whitesmoke; border-radius: 15px; border-style: outset ">
+                    <h:form  prependId="false" styleClass="form-horizontal" >
+                        <!--<h2 class="form-signin-heading">Sign Up Here</h2>-->
+
+                        <div>
+                            <label class="form-label f5">Username</label>
+                            <b:inputText placeholder="Pick a username" value="" styleClass="form-control ">
+                                <f:facet name="prepend">
+                                    <b:icon name="user"/>
+                                </f:facet>
+                            </b:inputText>
+                        </div>
+                        <div >
+                            <label class="form-label f5">Email</label>
+                            <b:inputText placeholder="you@example.com" value="" >
+                                <f:facet name="prepend">
+                                    <b:icon name="envelope"/>
+                                </f:facet>
+                            </b:inputText>
+                        </div>
+                        <div >
+                            <label class="form-label f5">Password</label>
+                            <b:inputText  placeholder="Create a password" type="password" value="" >
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="key"/>
+                                </f:facet>
+                            </b:inputText>
+                        </div>
+
+                        <div class="col-md-3">
+                            <b:commandButton look="primary btn-block btn-large" value="Sign Up" icon="log-in" action="#"/>
+                        </div>
+                    </h:form>
+            </div>
+    </div>
+
+</h:body>
+
+<footer>
+    <div class="col-sm-11" style="background-color: #fafbfc ; width: 100% ;  margin-top: 40px; padding: 0;">
+        <ui:include src="footer.xhtml"/>
+    </div>
+</footer>
+</html>
