@@ -81,14 +81,14 @@ public class ReserveSpacesEntity extends BaseEntity{
 
     private int getMaxId()
     {
-        String sql = "SELECT ISNULL(MAX(id)+ 1, 1) AS max_id FROM reserve_spaces";
+        String sql = "SELECT MAX(id) AS max_ido FROM reserve_spaces";
         if (getConnection() != null)
         {
             try
             {
                 ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
                 return resultSet.next()?
-                        resultSet.getInt("max_id") : 0;
+                        resultSet.getInt("max_ido") : 0;
             }catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -112,7 +112,7 @@ public class ReserveSpacesEntity extends BaseEntity{
                 if (getConnection() != null) {
                     String sql = "INSERT INTO reserve_spaces(id, start_date, end_date, user_id, observation, workspaces_id) VALUES(" +
                             String.valueOf(getMaxId() + 1) + ", '" +
-                            startDate +"', '"+endDate+"', '"+observation+"', '"+"'  )" ;
+                            startDate +"', '"+endDate+"', '"+observation+"' )" ;
                     int results = updateByCriteria(sql);
                     if (results > 0) {
                         ReserveSpace reserveSpace = new ReserveSpace(getMaxId(), startDate, endDate,observation, user ,workspace);
