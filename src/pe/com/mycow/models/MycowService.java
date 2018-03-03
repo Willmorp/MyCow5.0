@@ -14,7 +14,7 @@ public class MycowService {
     private WorkplacesEntity workplacesEntity ;
     private WorkspacesEntity workspacesEntity;
     private TypesEntity typesEntity;
-    private BaseEntity.ReserveSpacesEntity reservespacesEntity;
+    private ReserveSpacesEntity reservespacesEntity;
 
     private Connection getConnection() {
         if(connection == null) {
@@ -62,10 +62,10 @@ public class MycowService {
         }
         return workspacesEntity;
     }
-    protected BaseEntity.ReserveSpacesEntity getReserveSpacesEntity(){
+    protected ReserveSpacesEntity getReserveSpacesEntity(){
         if(getConnection() != null){
             if (reservespacesEntity == null){
-                reservespacesEntity = new BaseEntity.ReserveSpacesEntity();
+                reservespacesEntity = new ReserveSpacesEntity();
                 reservespacesEntity.setConnection(getConnection());
             }
         }
@@ -101,10 +101,10 @@ public class MycowService {
         return getWorkSpacesEntity() != null ?
                 getWorkSpacesEntity().findAll(getUsersEntity(),getTypesEntity(),getWorkplacesEntity()) : null;
     }
-//    public List<ReserveSpace> findAllReserveSpaces(){
-//        return getReserveSpacesEntity() != null ?
-//                getReserveSpacesEntity().findAll(getUsersEntity(),getTypesEntity(),getWorkSpacesEntity(),getWorkplacesEntity()) : null;
-//    }
+    public List<ReserveSpace> findAllReserveSpaces(){
+        return getReserveSpacesEntity() != null ?
+                getReserveSpacesEntity().findAll(getUsersEntity(),getWorkSpacesEntity(),getTypesEntity(),getWorkplacesEntity()) : null;
+    }
     public List<Types> findAllTypes() {
         return getTypesEntity() != null ?
                 getTypesEntity().findAll() : null;
@@ -157,15 +157,15 @@ public class MycowService {
 //                getUsersEntity().update(region) : false;
 //    }
 
-    public ReserveSpace createReserveSpace(String startDate, String endDate, String observation, User user , Workspace workspace,TypesEntity typesEntity, WorkplacesEntity workplacesEntity) {
+    public ReserveSpace createReserveSpace(String startDate, String endDate, String observation, User user , Workspace workspace,Types types, Workplace workplace) {
         return getReserveSpacesEntity() != null ?
-                getReserveSpacesEntity().create(startDate, endDate, observation, user, workspace,typesEntity, workplacesEntity) : null;
+                getReserveSpacesEntity().create(startDate, endDate, observation, user, workspace, types, workplace) : null;
     }
 
-    public boolean updateReserveSpace(ReserveSpace reserveSpace, UsersEntity usersEntity,WorkspacesEntity workspacesEntity,TypesEntity typesEntity,WorkplacesEntity workplacesEntity) {
-        return getReserveSpacesEntity() != null ?
-                getReserveSpacesEntity().update(reserveSpace,usersEntity,workspacesEntity,typesEntity,workplacesEntity) : false;
-    }
+//    public boolean updateReserveSpace(ReserveSpace reserveSpace, UsersEntity usersEntity,WorkspacesEntity workspacesEntity,TypesEntity typesEntity,WorkplacesEntity workplacesEntity) {
+//        return getReserveSpacesEntity() != null ?
+//                getReserveSpacesEntity().update(reserveSpace,usersEntity,workspacesEntity,typesEntity,workplacesEntity) : false;
+//    }
 
     public boolean deleteReserveSpace(int id) {
         return getReserveSpacesEntity() != null ?

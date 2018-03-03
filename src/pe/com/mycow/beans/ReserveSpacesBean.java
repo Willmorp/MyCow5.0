@@ -62,7 +62,7 @@ public class ReserveSpacesBean implements Serializable{
         this.reserveSpace = reserveSpace;
     }
 
-    //**************************
+    //****************************************************************************************************
     public String getStartDate() {
         return this.getReserveSpace().getStartDate();
     }
@@ -130,7 +130,7 @@ public class ReserveSpacesBean implements Serializable{
 
     public String createReserveSpace() {
         service.createReserveSpace( getStartDate(), getEndDate(), getObservation(),
-                getUser(), getWorkspace(), getTypesEntity(),getWorkplacesEntity());
+                getUser(), getWorkspace(), getTypes(),getWorkplace());
         return "success";
     }
 
@@ -139,11 +139,11 @@ public class ReserveSpacesBean implements Serializable{
         return "success";
     }
 
-    public String updateReserveSpace() {
-        service.updateReserveSpace(this.getReserveSpace(),this.getUserEntity(),
-                this.getWorkspacesEntity(),this.getTypesEntity(),this.getWorkplacesEntity());
-        return "success";
-    }
+//    public String updateReserveSpace() {
+//        service.updateReserveSpace(this.getReserveSpace(),this.getUserEntity(),
+//                this.getWorkspacesEntity(),this.getTypesEntity(),this.getWorkplacesEntity());
+//        return "success";
+//    }
 
     public String deleteReserveSpace(ReserveSpace reserveSpace) {
         service.deleteReserveSpace(reserveSpace.getId());

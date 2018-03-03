@@ -21,7 +21,7 @@ public class WorkspacesBean implements Serializable{
         service = new MycowService();
     }
 
-    //************** WORKSPACE ****************
+    //************************* WORKSPACE *****************************
     public List<Workspace> getWorkspaces(){
         return service.findAllWorkspaces();
     }
@@ -68,7 +68,7 @@ public class WorkspacesBean implements Serializable{
     }
 
 
-    //********* USERS ***************
+    //********************* USERS ***************************
     public List<User> getUsers(){
         service = new MycowService();
         return service.findAllUsers();
@@ -92,7 +92,7 @@ public class WorkspacesBean implements Serializable{
         this.getWorkspace().getUser().setFirstName(name);
     }
 
-    // *************type *********
+    // *********************** type ******************
 
     public List<Types> getTypes(){
         return service.findAllTypes();
@@ -110,7 +110,7 @@ public class WorkspacesBean implements Serializable{
        this.getWorkspace().getTypes().setTypeName(nametype);
     }
 
-    //********* WORKPLACE *******
+    //******************* WORKPLACE ************************
     public List<Workplace> getWorkPlaces(){
         return service.findAllWorkplaces();
     }

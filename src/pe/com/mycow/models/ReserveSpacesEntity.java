@@ -49,11 +49,11 @@ public class ReserveSpacesEntity extends BaseEntity{
         return (reserveSpaces != null ? reserveSpaces.get(0) : null);
     }
 
-    public ReserveSpace findByStartDate(String date, UsersEntity usersEntity, WorkspacesEntity workspacesEntity,TypesEntity typesEntity, WorkplacesEntity workplacesEntity) {
-        List<ReserveSpace> reserveSpaces = findByCriteria(DEFAULT_SQL +
-                " WHERE start_date= " + String.valueOf(date),usersEntity , workspacesEntity,typesEntity , workplacesEntity );
-        return (reserveSpaces != null ? reserveSpaces.get(0) : null);
-    }
+//    public ReserveSpace findByStartDate(String date) {
+//        List<ReserveSpace> reserveSpaces = findByCriteria(DEFAULT_SQL +
+//                " WHERE start_date= " + String.valueOf(date));
+//        return (reserveSpaces != null ? reserveSpaces.get(0) : null);
+//    }
 
     public ReserveSpace findByEndDate(String date, UsersEntity usersEntity, WorkspacesEntity workspacesEntity,TypesEntity typesEntity, WorkplacesEntity workplacesEntity) {
         List<ReserveSpace> reserveSpaces = findByCriteria(DEFAULT_SQL +
@@ -104,22 +104,22 @@ public class ReserveSpacesEntity extends BaseEntity{
 
 
 
-        public ReserveSpace create (String startDate , String endDate, String observation, User user, Workspace workspace,TypesEntity typesEntity,WorkplacesEntity workplacesEntity)
+        public ReserveSpace create (String startDate , String endDate, String observation, User user, Workspace workspace,Types type ,Workplace workplace)
         {
             UsersEntity usersEntity = new UsersEntity();
             WorkspacesEntity workspaces= new WorkspacesEntity();
-            if (findByStartDate(startDate, usersEntity,workspaces,typesEntity ,workplacesEntity) == null) {
+
                 if (getConnection() != null) {
-                    String sql = "INSERT INTO reserve_spaces(id, start_date, end_date, user_id, observation, workspaces_id) VALUES(" +
+                    String sql = "INSERT INTO reserve_spaces(id, start_date, end_date, observation , user_id, workspace_id) VALUES(" +
                             String.valueOf(getMaxId() + 1) + ", '" +
-                            startDate +"', '"+endDate+"', '"+observation+"' )" ;
+                            startDate +"', '"+endDate+"', '"+observation+"', " + 104 + " , "+ 10004  +" )" ;
                     int results = updateByCriteria(sql);
                     if (results > 0) {
                         ReserveSpace reserveSpace = new ReserveSpace(getMaxId(), startDate, endDate,observation, user ,workspace);
                         return reserveSpace;
                     }
                 }
-            }
+
             return null;
         }
 
@@ -129,13 +129,14 @@ public class ReserveSpacesEntity extends BaseEntity{
         }
 
 
-        public boolean update (ReserveSpace reserveSpace,UsersEntity usersEntity, WorkspacesEntity workspacesEntity,TypesEntity typesEntity,WorkplacesEntity workplacesEntity) {
-            if (findByStartDate(reserveSpace.getStartDate(), usersEntity, workspacesEntity,typesEntity, workplacesEntity ) != null) return false;
-            return updateByCriteria(
-                    "UPDATE reserve_spaces SET start_date = '" +
-                            reserveSpace.getStartDate() + "'" +
-                            " WHERE id = " +
-                            String.valueOf(reserveSpace.getId())) > 0;
-        }
+//        public boolean update (ReserveSpace reserveSpace,UsersEntity usersEntity, WorkspacesEntity workspacesEntity,TypesEntity typesEntity,WorkplacesEntity workplacesEntity) {
+//            if (findByStartDate(reserveSpace.getStartDate(), usersEntity,
+//                    workspacesEntity,typesEntity, workplacesEntity ) != null) return false;
+//            return updateByCriteria(
+//                    "UPDATE reserve_spaces SET start_date = '" +
+//                            reserveSpace.getStartDate() + "'" +
+//                            " WHERE id = " +
+//                            String.valueOf(reserveSpace.getId())) > 0;
+//        }
 
     }

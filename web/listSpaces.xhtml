@@ -50,15 +50,15 @@
                 <div class="card-block">
                     <h4 class="card-title">#{workspace.types.typeName}</h4>
                     <p class="card-text">S/.#{workspace.price}</p>
-                    <a href="#" class="btn btn-primary">Reservar</a>
+
+                        <h:commandButton style="width: 50%;height: 25%;margin: 30px;padding: 5px;" class="btn btn-primary btn-lg" value="Reservar" action="#{reserveSpacesBean.newReserveSpace}"/>
+
+
                 </div>
             </div>
         </div>
-
        </c:forEach>
-
     </f:view>
-
 
 </h:body>
 <!--<ui:include src="footer.xhtml"/>-->
