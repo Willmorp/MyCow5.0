@@ -49,8 +49,8 @@ public class UsersEntity extends BaseEntity {
         return (users != null && !users.isEmpty() ? users.get(0) : null);
     }
 
-    public User findByFirstName(String firstname) {
-        List<User> users = findByCriteria(DEFAULT_SQL + " WHERE first_name = '" + firstname + "'");
+    public User findByFirstName(String firstName) {
+        List<User> users = findByCriteria(DEFAULT_SQL + " WHERE first_name = '" + firstName + "'");
         return (users != null && !users.isEmpty() ? users.get(0) : null);
     }
 
