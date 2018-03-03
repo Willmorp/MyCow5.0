@@ -114,9 +114,9 @@ public class MycowService {
                 getUsersEntity().findById(id) : null;
     }
 
-    public User findUserByName(String name) {
+    public User findUserByFirstName(String firstName) {
         return getUsersEntity() != null ?
-                getUsersEntity().findByName(name) : null;
+                getUsersEntity().findByFirstName(firstName) : null;
     }
     
     public User findUserByEmail(String email) {
@@ -133,9 +133,9 @@ public class MycowService {
     //*********** CREATEE**********
 
 
-    public User createUser(String name) {
+    public User createUser(String firstName, String email, String password) {
         return getUsersEntity() != null ?
-                getUsersEntity().create(name) : null;
+                getUsersEntity().create(firstName, email, password) : null;
     }
 //    public Workspace createWorkSpace(int price,int capacity, String photo, String status,String description, User user, Types type, Workplace workplace) {
 //        return getWorkSpacesEntity() != null ?
