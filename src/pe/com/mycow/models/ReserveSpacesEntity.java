@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ReserveSpacesEntity extends BaseEntity{
 
-    private static String DEFAULT_SQL = "SELECT * FROM reserve_spaces";
+    private static String DEFAULT_SQL = "SELECT * FROM reserve_spaces ";
 
     private List<ReserveSpace> findByCriteria(String sql, UsersEntity usersEntity, WorkspacesEntity workspacesEntity,TypesEntity typesEntity ,WorkplacesEntity workplacesEntity) {
         List<ReserveSpace> reserveSpaces;
@@ -79,11 +79,9 @@ public class ReserveSpacesEntity extends BaseEntity{
         return updateByCriteria("DELETE FROM reserve_spaces WHERE id = " + String.valueOf(id)) > 0;
     }
 
-    private int getMaxId()
-    {
-        String sql = "SELECT MAX(id) AS max_ido FROM reserve_spaces";
-        if (getConnection() != null)
-        {
+    private int getMaxId(){
+        String sql = "SELECT MAX(id) AS max_ido FROM reserve_space2";
+        if (getConnection() != null){
             try
             {
                 ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
@@ -104,29 +102,26 @@ public class ReserveSpacesEntity extends BaseEntity{
 
 
 
-        public ReserveSpace create (String startDate , String endDate, String observation, User user, Workspace workspace,Types type ,Workplace workplace)
-        {
-            UsersEntity usersEntity = new UsersEntity();
-            WorkspacesEntity workspaces= new WorkspacesEntity();
-
-                if (getConnection() != null) {
-                    String sql = "INSERT INTO reserve_spaces(id, start_date, end_date, observation , user_id, workspace_id) VALUES(" +
-                            String.valueOf(getMaxId() + 1) + ", '" +
-                            startDate +"', '"+endDate+"', '"+observation+"', " + 104 + " , "+ 10004  +" )" ;
-                    int results = updateByCriteria(sql);
-                    if (results > 0) {
-                        ReserveSpace reserveSpace = new ReserveSpace(getMaxId(), startDate, endDate,observation, user ,workspace);
-                        return reserveSpace;
-                    }
+    public ReserveSpace create (String startDate , String endDate, String observation)
+    {
+            if (getConnection() != null) {
+                String sql = "INSERT INTO reserve_space2(id, start_date, end_date, observation , user_id, workspace_id) VALUES(" +
+                        String.valueOf(getMaxId() + 1) + ", '" +
+                        startDate +"', '" + endDate + "', '"+ observation +"', " + 104 + " , "+ 10004  +" )" ;
+                int results = updateByCriteria(sql);
+                if (results > 0) {
+                    ReserveSpace reserveSpace = new ReserveSpace(getMaxId(), startDate, endDate,observation);
+                    return reserveSpace;
                 }
+            }
 
-            return null;
-        }
+        return null;
+    }
 
-        public List<ReserveSpace> findAll (UsersEntity usersEntity,  WorkspacesEntity
-        workspacesEntity, TypesEntity typesEntity,WorkplacesEntity workplacesEntity){
-            return findByCriteria(DEFAULT_SQL, usersEntity, workspacesEntity,typesEntity ,workplacesEntity);
-        }
+    public List<ReserveSpace> findAll (UsersEntity usersEntity,  WorkspacesEntity
+    workspacesEntity, TypesEntity typesEntity,WorkplacesEntity workplacesEntity){
+        return findByCriteria(DEFAULT_SQL, usersEntity, workspacesEntity,typesEntity ,workplacesEntity);
+    }
 
 
 //        public boolean update (ReserveSpace reserveSpace,UsersEntity usersEntity, WorkspacesEntity workspacesEntity,TypesEntity typesEntity,WorkplacesEntity workplacesEntity) {

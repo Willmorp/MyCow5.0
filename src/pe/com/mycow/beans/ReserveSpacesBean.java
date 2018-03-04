@@ -129,8 +129,7 @@ public class ReserveSpacesBean implements Serializable{
     }
 
     public String createReserveSpace() {
-        service.createReserveSpace( getStartDate(), getEndDate(), getObservation(),
-                getUser(), getWorkspace(), getTypes(),getWorkplace());
+        service.createReserveSpace( getStartDate(), getEndDate(), getObservation());
         return "success";
     }
 

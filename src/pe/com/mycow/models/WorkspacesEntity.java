@@ -62,7 +62,8 @@ public class WorkspacesEntity extends BaseEntity{
         if(getConnection() != null) {
              try {
                 ResultSet resultSet = getConnection().createStatement().executeQuery(sql);
-                return resultSet.next() ? resultSet.getInt("max_idi") : 0;
+                return resultSet.next() ?
+                        resultSet.getInt("max_idi") : 0;
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -74,7 +75,7 @@ public class WorkspacesEntity extends BaseEntity{
 
         if(getConnection() != null){
             String sql = "INSERT INTO workspaces (id , price , capacity, photo, status , description, user_id, type_id, workplace_id  ) VALUES(" +
-                    String.valueOf(getMaxId() + 1) +", " + price + ", "+ capacity + " , '"  + photo + "', '"+ status  +"' , '"+ description + "' ,  '100' , '1'  , '1001')";
+                    String.valueOf(getMaxId() + 1) + ", " + price + ", "+ capacity + " , '"  + photo + "', '"+ status  +"' , '"+ description + "' ,  '100' , '1'  , '1001')";
             int results = updatebycriteria(sql);
             if(results > 0){
                 Workspace workspace = new Workspace(getMaxId(), price , capacity, photo, status, description );

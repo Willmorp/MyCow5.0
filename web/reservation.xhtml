@@ -40,9 +40,11 @@
             <h:inputTextarea rows="3" id="observation" value="#{reserveSpacesBean.observation}"/>
         </b:column>
         <b:column>
-            <h:form>
-                <h:commandButton value="Reservar" action="#{reserveSpacesBean.createReserveSpace}" />
-            </h:form>
+            <div class = "alerta alerta-éxito">
+                <h:commandButton data-dismiss="alert" value="Reservar" action="#{reserveSpacesBean.createReserveSpace}" />
+
+            </div>
+
         </b:column>
     </b:container>
     </h:form>

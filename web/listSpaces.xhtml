@@ -34,7 +34,7 @@
         <div class="col-sm-12" style="text-align:center">
             <h:commandButton style="width: 50%;height: 25%;margin: 30px;padding: 5px;" class="btn btn-primary btn-lg" value="Agrega Tu Espacio" action="#{workspacesBean.newWorkspace}"/>
         </div>
-    </h:form>
+
     <f:view>
         <c:forEach var="workspace" items="${workspacesBean.workspaces}">
         <div class="col-md-4">
@@ -59,7 +59,7 @@
         </div>
        </c:forEach>
     </f:view>
-
+    </h:form>
 </h:body>
 <!--<ui:include src="footer.xhtml"/>-->
 <footer>

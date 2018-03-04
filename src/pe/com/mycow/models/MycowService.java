@@ -20,7 +20,7 @@ public class MycowService {
         if(connection == null) {
             try {
                 connection = ((DataSource) InitialContext
-                        .doLookup("jdbc/MySQLDataSource2"))
+                        .doLookup("jdbc/MySQLDataSource1"))
                         .getConnection();
             } catch (NamingException | SQLException e) {
                 e.printStackTrace();
@@ -157,9 +157,9 @@ public class MycowService {
 //                getUsersEntity().update(region) : false;
 //    }
 
-    public ReserveSpace createReserveSpace(String startDate, String endDate, String observation, User user , Workspace workspace,Types types, Workplace workplace) {
+    public ReserveSpace createReserveSpace(String startDate, String endDate, String observation) {
         return getReserveSpacesEntity() != null ?
-                getReserveSpacesEntity().create(startDate, endDate, observation, user, workspace, types, workplace) : null;
+                getReserveSpacesEntity().create(startDate, endDate, observation) : null;
     }
 
 //    public boolean updateReserveSpace(ReserveSpace reserveSpace, UsersEntity usersEntity,WorkspacesEntity workspacesEntity,TypesEntity typesEntity,WorkplacesEntity workplacesEntity) {

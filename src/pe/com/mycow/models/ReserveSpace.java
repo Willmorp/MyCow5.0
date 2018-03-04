@@ -11,6 +11,7 @@ public class ReserveSpace  {
     public ReserveSpace() {
     }
 
+
     public ReserveSpace(int id, String startDate, String endDate, String observation, User user, Workspace workspace) {
         this.id = id;
         this.startDate = startDate;
@@ -18,6 +19,13 @@ public class ReserveSpace  {
         this.observation = observation;
         this.user = user;
         this.workspace = workspace;
+    }
+
+    public ReserveSpace(int id, String startDate, String endDate, String observation) {
+        this.id = id;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.observation = observation;
     }
 
 
