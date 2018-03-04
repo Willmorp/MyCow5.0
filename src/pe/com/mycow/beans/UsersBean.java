@@ -72,10 +72,10 @@ public class UsersBean implements Serializable {
         return "success";
     }
 
-//    public  String createUser(){
-//        service.createUser(this.getFirstName(), this.getEmail(), this.getPassword());
-//        return "success";
-//    }
+   public  String createUser(){
+        service.createUser(this.getFirstName(), this.getEmail(), this.getPassword());
+        return "success";
+   }
 
     public String doValidateInput (){
         if(!"mycow".equals(getPassword())) return "error";
